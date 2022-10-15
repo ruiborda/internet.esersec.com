@@ -29,7 +29,7 @@
                 <li><a>Item 3</a></li> --}}
             </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl">ESERSEC</a>
+        <a class="btn btn-ghost normal-case text-xl" href="/">ESERSEC</a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
@@ -63,6 +63,7 @@
         </div>
     </div>
 </div>
+<div class="divider"></div>
 <section class="w-full items-center flex flex-col" id="planes">
     <h2 class="text-4xl font-bold text-center my-16">PLANES</h2>
     <div class="w-3/4">
@@ -180,5 +181,57 @@
         </div>
     </div>
 </section>
+<div class="divider"></div>
+<section class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse w-3/4">
+        <div class="text-center lg:text-left">
+            <h1 class="text-5xl font-bold">Contratar Plan</h1>
+            <p class="py-6"> nosotros nos comunicaremos contigo.</p>
+        </div>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form class="card-body" action="https://api.whatsapp.com/send" method="GET" id="contacto">
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Teléfono de Contacto</span>
+                    </label>
+                    <input type="number" name="telephone" placeholder="Celular" class="input input-bordered" />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Nombres y Apellidos</span>
+                    </label>
+                    <input type="text" name="name" placeholder="Nombres y Apellidos" class="input input-bordered" />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Correo Electrónico <span class="font-extralight">(opcional)</span></span>
+                    </label>
+                    <input type="email" name="email" placeholder="Correo Electrónico" class="input input-bordered" />
+                </div>
+                <div class="form-control">
+                    <label class="label">
+                        <span class="label-text">Mensaje <span class="font-extralight">(opcional)</span></span>
+                    </label>
+                    <textarea type="text" name="message" placeholder="Mensaje" class="input input-bordered" rows="5"></textarea>
+                </div>
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary">Contratar Plan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+const contacto = document.getElementById('contacto');
+contacto.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const url = new URL('https://api.whatsapp.com/send');
+    const data = new FormData(contacto);
+    const mensaje = `Formulario para contratar plan ${data.get('name')}\n\nTeléfono: ${data.get('telephone')}\nCorreo: ${data.get('email')}\nMensaje: ${data.get('message')}`;
+    url.searchParams.append('phone', '51939412296');
+    url.searchParams.append('text', mensaje);
+    window.open(url);
+});
+</script>
 </body>
 </html>

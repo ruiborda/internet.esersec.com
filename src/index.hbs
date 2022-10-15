@@ -191,7 +191,7 @@
             <p class="py-6"> nosotros nos comunicaremos contigo.</p>
         </div>
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form class="card-body" action="https://api.whatsapp.com/send" method="GET" id="contacto">
+            <form class="card-body" action="https://api.whatsapp.com/send" method="GET" id="formContacto">
                 <div class="form-control">
                     <label class="label">
                         <span class="label-text">Teléfono de Contacto</span>
@@ -258,11 +258,11 @@
     </div>
 </section>
 <script>
-    const contacto = document.getElementById('contacto');
-    contacto.addEventListener('submit', (e) => {
+    const formContacto = document.getElementById('formContacto');
+    formContacto.addEventListener('submit', (e) => {
         e.preventDefault();
         const url = new URL('https://api.whatsapp.com/send');
-        const data = new FormData(contacto);
+        const data = new FormData(formContacto);
         const mensaje = `Formulario para contratar plan\n\nNombres:${data.get('name')}\n\nTeléfono: ${data.get('telephone')}\nCorreo: ${data.get('email')}\nMensaje: ${data.get('message')}`;
         url.searchParams.append('phone', '51939412296');
         url.searchParams.append('text', mensaje);
